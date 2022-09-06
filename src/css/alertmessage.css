@@ -1,0 +1,4 @@
+div#alert-msg {
+    display: flex;
+    text-align: center;
+}

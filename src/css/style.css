@@ -1,0 +1,5 @@
+/* Custom font (Noto Sans) */
+* {
+    margin: 0;
+    font-family: 'Noto Sans', sans-serif;
+}
