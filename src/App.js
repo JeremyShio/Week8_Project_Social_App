@@ -14,12 +14,15 @@ import Register from './components/Register';
 // Import Login component
 import Login from './components/Login';
 // Import Create Post component
-// import CreatePost from './components/CreatePost';
+import CreatePost from './components/CreatePost';
 // Import Posts component
-// import Posts from './components/Posts';
+import Posts from './components/Posts';
 // Import Single Post component
 // import SinglePost from './components/SinglePost';
-
+// logged-in picture
+// import socialMediaBlue from './static/images/social_media_blue.png'
+// logged-out picture
+// import socialMediaLight from './static/images/social_media_light.jpg'
 
 
 
@@ -61,19 +64,23 @@ function App(props) {
     return (
         <React.Fragment>
             {/* Navbar elements/functions linked to App.js */}
-            <Navbar name = '-WE BLOG-' logout = {logout} />
+            <Navbar name = '-WE BLOG-' logout = {logout} loggedIn = {loggedIn}/>
             <div className = 'container'>
                 {/* alertMessage component linked to App.js */}
                 { message 
                 ? <AlertMessage message = {message} category = {category} flashMessage = {flashMessage} />
                 : null}
                 
-                {/* If user passed login check */}
+                {/* Login check */}
                 { loggedIn
-                ? <h1>You are currently logged in!</h1>
-                : <h1>You are currently logged out, please login to use features!</h1>}
+                // If user is logged-in
+                ? <h1>Please Blog Responsibly, Cheers!</h1>
+                // If user is logged-out
+                : <h1>In Order to Blog You Need to Log... In... Haha</h1>}
 
                 <Routes>
+                    {/* function does NOT use class components (.this) before state/props, uses variable names instead! */}
+
                     {/* Home */}
                     <Route path = '/' element = {<Home />} />
                     {/* User register */}
@@ -81,16 +88,18 @@ function App(props) {
                     {/* User login */}
                     <Route path = '/login' element = {<Login flashMessage = {flashMessage} login = {login} />} />
                     {/* Create post (flash succes upon post creation) */}
-                    {/* <Route path = '/create-post' element = {<CreatePost flashMessage = {this.flashMessage} loggedIn = {this.state.loggedIn} />} /> */}
+                    <Route path = '/create-post' element = {<CreatePost flashMessage = {flashMessage} loggedIn = {loggedIn} />} />
+                    
+                    
                     {/* Blog posts */}
-                    {/* <Route path = '/blog/posts' element = {<Posts />} /> */}
+                    <Route path = '/blog/posts' element = {<Posts />} loggedIn = {loggedIn} />
                     {/* Single Blog post */}
-                    {/* <Route path = '/blog/posts/<post_id>' element = {<SinglePost />} /> */}
+                    {/* <Route path = '/blog/posts/<post_id>' element = {<SinglePost />} loggedIn = {loggedIn} />  */}
                 </Routes>
 
             </div>
         </React.Fragment>
     );
-}
+};
 
 export default App;

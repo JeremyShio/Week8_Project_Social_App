@@ -2,3 +2,7 @@
     display: flex;
     width: 100%;
 }
+
+strong.highlight {
+    color: #81ccfe;
+}

@@ -13,11 +13,14 @@ export default function Login(props) {
 
         let username = event.target.username.value;
         let password = event.target.password.value;
-
+        
         let myHeaders = new Headers();
         myHeaders.append('Authorization', 'Basic ' + btoa(`${username}:${password}`))
-
-        let response = await fetch('https://kekambas-blog.herokuapp.com/auth/token', {headers:myHeaders});
+        // Await api fetch POST request
+        let response = await fetch('https://kekambas-blog.herokuapp.com/auth/token', {
+            method: 'POST', 
+            headers: myHeaders
+        });
         if (response.ok){
             let data = await response.json();
             
@@ -35,6 +38,7 @@ export default function Login(props) {
             props.flashMessage('You have successfully logged in', 'success');
             navigate('/');
         } else {
+            // Flash error message indicating username or pass is incorrect
             props.flashMessage('Your username and/or password are incorrect', 'danger');
         }
 
